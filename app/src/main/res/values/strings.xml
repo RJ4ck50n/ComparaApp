@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">ComparaApp</string>
+    <string name="prefs_file" />
+
+    <style name="prefs_file">com.example.proyprueba2.PREFERENCE_FILE_KEY</style>
+</resources>

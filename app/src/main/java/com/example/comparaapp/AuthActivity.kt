@@ -23,11 +23,11 @@ class AuthActivity : AppCompatActivity() {
         // Splash Screen
         Thread.sleep(2000)
         setTheme(R.style.AppTheme) // Usar el tema
-        // Por Defecto
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_auth)
 
-        // Obtain the FirebaseAnalytics instance. Además de mandar eventos a G.Analytics
+        // Obtiene la instancia de FirebaseAnalytics. Además de mandar eventos a G.Analytics
         val analytics = FirebaseAnalytics.getInstance(this)
         val bundle = Bundle()
         bundle.putString("Message", "Integración de Firebase completa")
@@ -42,16 +42,12 @@ class AuthActivity : AppCompatActivity() {
         super.onStart()
 
         authLayout.visibility = View.VISIBLE
-    }
 
-    enum class ProviderType {
-        BASIC,
-        GOOGLE
     }
-
 
     private fun session() {
-        val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE)
+        val prefs = getSharedPreferences(getString(R.string.prefs_file),
+                Context.MODE_PRIVATE)
 
         val email = prefs.getString("email", null)
         val provider = prefs.getString("provider", null)
@@ -62,13 +58,8 @@ class AuthActivity : AppCompatActivity() {
         }
     }
 
-
     private fun setup() {
-
-        title = "¡Bienvenid@!"
-
-        // Lógica al botón "Registro"
-
+        // Lógica al botón "Registrar | Sign Up"
         btn_registrar.setOnClickListener {
             // Validar que se ha ingresado email y contraseña (no están vacíos)
             if (emailEditText.text.isNotEmpty() && passwordEditText.text.isNotEmpty()) {
@@ -87,16 +78,15 @@ class AuthActivity : AppCompatActivity() {
             }
         }
 
-
         // Lógica al botón "Acceder"
-
         btn_Acceder.setOnClickListener {
             if (emailEditText.text.isNotEmpty() && passwordEditText.text.isNotEmpty()) {
-                // Usando el servicio de FBase ... y agregar el Listener para que se notifique que ha ingresado emsil&pass correctamente
+                // Usando el servicio de FBase | Agregar el Listener para que se notifique que ha ingresado email & pass correctamente
                 FirebaseAuth.getInstance()
-                        .signInWithEmailAndPassword(emailEditText.text.toString(),
-                                passwordEditText.text.toString()).addOnCompleteListener {
-
+                        .signInWithEmailAndPassword(
+                                emailEditText.text.toString(),
+                                passwordEditText.text.toString()
+                        ).addOnCompleteListener {
                             if (it.isSuccessful) {
                                 showHome(it.result?.user?.email ?: "", ProviderType.BASIC)
                             } else {
@@ -120,14 +110,13 @@ class AuthActivity : AppCompatActivity() {
             startActivityForResult(googleClient.signInIntent, GOOGLE_SIGN_IN)
 
         }
-
     }
 
 
     private fun showAlert() {
         // Validando los mensajes de alerta | ingreso incorrecto de datos.
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("Error")
+        builder.setTitle("Alerta")
         builder.setMessage("No se ha podido autenticar al usuario")
         builder.setPositiveButton("Aceptar", null)
         // Registra
@@ -138,7 +127,7 @@ class AuthActivity : AppCompatActivity() {
 
     private fun showHome(email: String, provider: ProviderType) {
         // Mostrar y ajustar la nueva pantalla
-        val homeIntent = Intent(this, MiPerfilActivity::class.java).apply {
+        val homeIntent = Intent(this, MiPerfil2::class.java).apply {
             putExtra("email", email)
             putExtra("provider", provider.name)
         }
@@ -146,32 +135,30 @@ class AuthActivity : AppCompatActivity() {
         startActivity(homeIntent)
     }
 
-
-
     // Reimplementando el 'activity', para que  responda con el LOGIN CON GOOGLE
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode==GOOGLE_SIGN_IN){
+        if (requestCode == GOOGLE_SIGN_IN) {
             // Recuperando respuesta
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
 
             try {
                 val cuentaGoogle = task.getResult(ApiException::class.java)
 
-                if (cuentaGoogle!=null){
+                if (cuentaGoogle != null) {
                     val credencial = GoogleAuthProvider.getCredential(cuentaGoogle.idToken, null)
                     // Pasando la credencial a Firebase
                     FirebaseAuth.getInstance().signInWithCredential(credencial)
                             .addOnCompleteListener {
                                 if (it.isSuccessful) {
-                                    showHome(cuentaGoogle.email?:"", ProviderType.GOOGLE)
+                                    showHome(cuentaGoogle.email ?: "", ProviderType.GOOGLE)
                                 } else {
                                     showAlert()
                                 }
                             }
                 }
-            }catch (e:ApiException){
+            } catch (e: ApiException) {
                 showAlert()
             }
 

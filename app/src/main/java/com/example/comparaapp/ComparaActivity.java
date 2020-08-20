@@ -1,11 +1,6 @@
 package com.example.comparaapp;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,11 +8,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
@@ -45,6 +41,7 @@ public class ComparaActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_compara);
+
         mrootReference=FirebaseDatabase.getInstance().getReference();
         spinnerArroz=findViewById(R.id.spinnerPrueba);
         spinnerAzucar=findViewById(R.id.spinnerAzucar);
@@ -56,7 +53,6 @@ public class ComparaActivity extends AppCompatActivity {
         listaprodAceite=new ArrayList();
         listaprodLeche=new ArrayList();
         btnComparacion=(Button)findViewById(R.id.btn_irComparacion);
-
 
         mrootReference.child("Arroz").addValueEventListener(new ValueEventListener() {
             @Override
@@ -80,8 +76,6 @@ public class ComparaActivity extends AppCompatActivity {
 
             }
         });
-
-
 
         spinnerArroz.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -150,6 +144,35 @@ public class ComparaActivity extends AppCompatActivity {
                 startActivityForResult(inte,0);
             }
 
+        });
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        // Establecer activity por defecto->Compara
+        bottomNavigationView.setSelectedItemId(R.id.Compara);
+
+        //Realizar el llamado del Item seleccionado
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.Compara:
+                        return true;
+
+                    case R.id.Inicio:
+                        startActivity(new Intent(getApplicationContext()
+                                ,MainActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.MiPerfil:
+                        startActivity(new Intent(getApplicationContext()
+                                ,MiPerfil2.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+                return false;
+            }
         });
 
     }

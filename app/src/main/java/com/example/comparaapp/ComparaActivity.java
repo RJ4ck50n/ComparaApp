@@ -1,12 +1,10 @@
 package com.example.comparaapp;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class ComparaActivity extends AppCompatActivity {
@@ -26,18 +24,18 @@ public class ComparaActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
+                    case R.id.Compara:
+                        return true;
+
                     case R.id.Inicio:
                         startActivity(new Intent(getApplicationContext()
                                 ,MainActivity.class));
                         overridePendingTransition(0,0);
                         return true;
 
-                    case R.id.Compara:
-                        return true;
-
                     case R.id.MiPerfil:
                         startActivity(new Intent(getApplicationContext()
-                                ,MiPerfil2.class));
+                                ,MiPerfilActivity.class));
                         overridePendingTransition(0,0);
                         return true;
                 }

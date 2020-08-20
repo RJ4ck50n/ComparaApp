@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Supermercados">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="130sp"
+        android:src="@drawable/supermercadosperuanos"
+        android:contentDescription="TODO" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:translationY="150sp"
+        android:textStyle="bold"
+        android:textSize="30sp"
+        android:text="ELIJA LOS"
+        android:textAlignment="center"
+        android:gravity="center"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:translationY="190sp"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="30sp"
+        android:text="SUPERMERCADOS"/>
+
+    <ImageView
+        android:layout_width="160sp"
+        android:layout_height="145sp"
+        android:translationY="240sp"
+        android:translationX="50sp"
+        android:id="@+id/logoPlaza"
+        android:src="@drawable/logofinalplaza"
+        android:contentDescription="TODO" />
+
+    <ImageView
+        android:layout_width="160sp"
+        android:layout_height="140sp"
+        android:translationY="245sp"
+        android:translationX="200sp"
+        android:src="@drawable/logofinaltotus"/>
+
+    <ImageView
+        android:layout_width="180sp"
+        android:layout_height="170sp"
+        android:translationX="40sp"
+        android:translationY="410sp"
+        android:src="@drawable/logometro" />
+
+    <ImageView
+        android:layout_width="145sp"
+        android:layout_height="140sp"
+        android:translationX="210sp"
+        android:translationY="420sp"
+        android:src="@drawable/logowong"/>
+
+    <Button
+        android:id="@+id/btnComparemos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:translationY="610sp"
+        android:translationX="100sp"
+        android:text="Comparemos de una vez"
+        android:gravity="center" />
+
+    <CheckBox
+        android:layout_width="30sp"
+        android:id="@+id/checkboxTottus"
+        android:layout_height="30sp"
+        android:translationX="265sp"
+        android:translationY="380sp"/>
+    <CheckBox
+        android:layout_width="30sp"
+        android:id="@+id/checkboxPlaza"
+        android:layout_height="30sp"
+        android:translationX="115sp"
+        android:translationY="380sp"/>
+    <CheckBox
+        android:layout_width="30sp"
+        android:id="@+id/checkboxMetro"
+        android:layout_height="30sp"
+        android:translationX="115sp"
+        android:translationY="560sp"/>
+    <CheckBox
+        android:layout_width="30sp"
+        android:id="@+id/checkboxWong"
+        android:layout_height="30sp"
+        android:translationX="265sp"
+        android:translationY="560sp"/>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimary"
+        app:itemIconTint="@drawable/selector"
+        app:itemTextColor="@drawable/selector"
+        app:menu="@menu/menu_navigation" />
+
+</RelativeLayout>

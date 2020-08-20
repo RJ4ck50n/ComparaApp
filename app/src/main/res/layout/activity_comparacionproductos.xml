@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Comparacionproductos">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="130sp"
+        android:src="@drawable/supermercadosperuanos"
+        android:contentDescription="TODO" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:translationY="150sp"
+        android:text="HAS AHORRADO:"
+        android:textSize="30sp"
+        android:textAlignment="center" />
+    <TextView
+        android:id="@+id/txtAhorro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:translationY="200dp"
+        android:text="S/ 5.40" />
+
+    <TextView
+        android:id="@+id/txtSuper1"
+        android:layout_width="80sp"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:translationY="240dp"/>
+    <TextView
+        android:id="@+id/txtSuper2"
+        android:layout_width="80sp"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:textAlignment="center"
+        android:translationX="200sp"
+        android:gravity="center"
+        android:translationY="240dp" />
+
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:translationY="280sp">
+
+        <TableRow>
+            <TextView
+                android:padding="3dip"
+                android:width="180sp"/>
+            <ImageView
+                android:layout_width="110sp"
+                android:layout_height="60sp"
+                android:src="@drawable/logofinaltotus"/>
+            <ImageView
+                android:layout_width="110sp"
+                android:layout_height="60sp"
+                android:src="@drawable/logofinalplaza"/>
+
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:id="@+id/productoArroz"
+                android:layout_height="35sp"
+                android:gravity="center"
+                android:textAlignment="center" />
+            <TextView
+                android:text="asdasd"
+                android:gravity="center"
+                android:padding="3dip"
+                android:layout_height="match_parent"
+                android:textAlignment="center" />
+            <TextView
+                android:text="asdasd"
+                android:gravity="center"
+                android:layout_height="match_parent"
+                android:padding="3dip"
+                android:textAlignment="center"/>
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_height="35sp"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:padding="3dip" />
+            <TextView
+                android:gravity="center"
+                android:padding="3dip"
+                android:layout_height="match_parent"
+                android:textAlignment="center" />
+            <TextView
+                android:gravity="center"
+                android:layout_height="match_parent"
+                android:padding="3dip"
+                android:textAlignment="center" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_height="35sp"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:padding="3dip" />
+            <TextView
+                android:gravity="center"
+                android:padding="3dip"
+                android:layout_height="match_parent"
+                android:textAlignment="center" />
+            <TextView
+                android:text="asdasd"
+                android:gravity="center"
+                android:layout_height="match_parent"
+                android:padding="3dip"
+                android:textAlignment="center" />
+        </TableRow>
+
+
+    </TableLayout>
+
+</RelativeLayout>

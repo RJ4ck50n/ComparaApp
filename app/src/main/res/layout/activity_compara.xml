@@ -10,208 +10,149 @@
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_width="wrap_content"
+        android:layout_height="130sp"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/supermercadosperuanos"
+        tools:ignore="MissingConstraints" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:translationY="130dp"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:text="ELIJA LOS PRODUCTOS"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/imageViewArroz"
+        android:layout_width="100dp"
+        android:layout_height="90dp"
+        android:translationX="5dp"
+        android:translationY="168dp"
         tools:ignore="MissingConstraints">
 
     </ImageView>
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:text="Arroz"
+        android:layout_marginStart="20dp"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:translationY="180dp"
+        android:translationX="90dp"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints">
 
-    <ScrollView
+    </TextView>
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:text="Azucar"
+        android:textStyle="bold"
+        android:textSize="25sp"
+        android:translationY="285dp"
+        android:translationX="90dp"
+        tools:ignore="MissingConstraints"
+        android:layout_marginStart="20dp">
+    </TextView>
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:text="Aceite"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:translationX="90sp"
+        android:translationY="385dp"
+        tools:ignore="MissingConstraints"
+        android:layout_marginStart="20dp">
+    </TextView>
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:text="Leche"
+        android:textSize="25dp"
+        android:translationX="90sp"
+        android:textStyle="bold"
+        android:translationY="494sp"
+        tools:ignore="MissingConstraints"
+        android:layout_marginStart="20dp">
+    </TextView>
+
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="90dp"
+        android:src="@drawable/azucarrubiametro5kg"
+        android:translationY="270dp"
+        android:translationX="5dp"
+        tools:ignore="MissingConstraints" />
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="90dp"
+        android:src="@drawable/aceite"
+        android:translationY="378sp"
+        android:translationX="5sp"
+        tools:ignore="MissingConstraints" />
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="90dp"
+        android:src="@drawable/lecheevaporadaglorialata400gr6un"
+        android:translationY="485dp"
+        android:translationX="5sp"
+        tools:ignore="MissingConstraints" />
+
+
+    <Spinner
+        android:id="@+id/spinnerPrueba"
+        android:layout_width="283sp"
+        android:layout_height="30dp"
+        android:translationY="195sp"
+        android:translationX="90dp"
+        android:layout_margin="20dp"
+        android:padding="5dp"
+        tools:ignore="MissingConstraints" />
+    <Spinner
+        android:id="@+id/spinnerAzucar"
+        android:layout_width="283sp"
+        android:layout_height="30dp"
+        android:translationY="300dp"
+        android:translationX="90sp"
+        android:layout_margin="20dp"
+        android:padding="5dp"
+        tools:ignore="MissingConstraints" />
+    <Spinner
+        android:id="@+id/spinnerAceite"
+        android:layout_width="283sp"
+        android:layout_height="30dp"
+        android:translationY="405sp"
+        android:translationX="90sp"
+        android:layout_margin="20dp"
+        android:padding="5dp"
+        tools:ignore="DuplicateIds,MissingConstraints" />
+    <Spinner
+        android:id="@+id/spinnerLeche"
+        android:layout_width="283sp"
+        android:layout_height="30dp"
+        android:translationY="515sp"
+        android:translationX="90sp"
+        android:layout_margin="20dp"
+        android:padding="5dp"
+        tools:ignore="DuplicateIds,MissingConstraints" />
+
+    <Button
+        android:id="@+id/btn_irComparacion"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/bottom_navigation"
-        android:layout_below="@+id/imageView4">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="ELIJA LOS PRODUCTOS"
-                android:textAlignment="center"
-                android:textColor="@android:color/black"
-                android:textSize="20dp"></TextView>
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="10dp" />
+        android:layout_height="50dp"
+        android:translationY="620dp"
+        android:text="Elegir Supermercados"
+        tools:ignore="MissingConstraints" />
 
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:text="Arroz"
-                android:textSize="25dp"
-                app:layout_constraintStart_toStartOf="parent">
-
-            </TextView>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/imageView6"
-                    android:layout_width="130dp"
-                    android:layout_height="130dp"
-                    app:srcCompat="@drawable/arrozextracosteno5kg">
-
-                </ImageView>
-
-                <Spinner
-                    android:id="@+id/spinnerPrueba"
-                    android:layout_width="260dp"
-                    android:layout_height="30dp"
-                    android:layout_margin="20dp"
-                    android:padding="5dp"
-                    tools:ignore="MissingConstraints"></Spinner>
-
-            </LinearLayout>
-
-
-        </LinearLayout>
-    </ScrollView>
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        app:itemTextColor="@drawable/selector"
-        app:itemIconTint="@drawable/selector"
-        app:menu="@menu/menu_navigation"
-        android:layout_alignParentBottom="true"
-        />
 </RelativeLayout>
-
-    <!--
-    <ScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-
-
-            <TextView
-                android:layout_width="100dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="20dp"
-                android:text="Azucar"
-                android:textSize="25dp"
-                android:textStyle="bold"
-                android:translationX="125dp"
-                android:translationY="285dp"
-                tools:ignore="MissingConstraints"></TextView>
-
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="90dp"
-                android:src="@drawable/aceite"
-                android:translationX="10dp"
-                android:translationY="380dp"
-                tools:ignore="MissingConstraints"></ImageView>
-
-            <Spinner
-                android:id="@+id/spinnerLeche"
-                android:layout_width="260dp"
-                android:layout_height="30dp"
-                android:layout_margin="20dp"
-                android:padding="5dp"
-                android:translationX="125dp"
-                android:translationY="525dp"
-                tools:ignore="DuplicateIds,MissingConstraints"></Spinner>
-
-            <Button
-                android:id="@+id/btn_elegirSuper"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@drawable/button_round"
-                android:text="Elegir Supermercados"
-                android:textColor="@android:color/white"
-                android:translationY="620dp"
-                tools:ignore="MissingConstraints"></Button>
-
-            <TextView
-                android:layout_width="100dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="20dp"
-                android:text="Leche"
-                android:textSize="25dp"
-                android:textStyle="bold"
-                android:translationX="125dp"
-                android:translationY="490dp"
-                tools:ignore="MissingConstraints"></TextView>
-
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="90dp"
-                android:src="@drawable/lecheevaporadaglorialata400gr6un"
-                android:translationX="10dp"
-                android:translationY="485dp"
-                tools:ignore="MissingConstraints"></ImageView>
-
-            <Spinner
-                android:id="@+id/spinnerAzucar"
-                android:layout_width="260dp"
-                android:layout_height="30dp"
-                android:layout_margin="20dp"
-                android:padding="5dp"
-                android:translationX="125dp"
-                android:translationY="320dp"
-                tools:ignore="MissingConstraints"></Spinner>
-
-            <ImageView
-                android:layout_width="121dp"
-                android:layout_height="90dp"
-                android:src="@drawable/azucarrubiametro5kg"
-                android:translationX="10dp"
-                android:translationY="270dp"
-                tools:ignore="MissingConstraints"></ImageView>
-
-            <TextView
-                android:layout_width="100dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="20dp"
-                android:text="Aceite"
-                android:textSize="25dp"
-                android:textStyle="bold"
-                android:translationX="125dp"
-                android:translationY="380dp"
-                tools:ignore="MissingConstraints"></TextView>
-
-            <Spinner
-                android:id="@+id/spinnerAceite"
-                android:layout_width="260dp"
-                android:layout_height="30dp"
-                android:layout_margin="20dp"
-                android:padding="5dp"
-                android:translationX="125dp"
-                android:translationY="415dp"
-                tools:ignore="DuplicateIds,MissingConstraints"></Spinner>
-        </LinearLayout>
-    </ScrollView>
-
-
--->

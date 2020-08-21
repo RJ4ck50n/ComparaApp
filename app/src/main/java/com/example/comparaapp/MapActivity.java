@@ -72,6 +72,20 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         LatLng casa = new LatLng(-12.006264, -77.003925);
         LatLng metroAgustino = new LatLng(-12.039450, -77.002902);
 
+        /*LatLng marcador1 = new LatLng(-12.039450, -77.002902);
+        mMap.addMarker(new MarkerOptions()
+                .position(marcador1)
+                .title("Metro Agustino Plaza")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.market)));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(marcador1));
+        LatLng marcador2 = new LatLng(-12.01704,-76.9953073);
+        mMap.addMarker(new MarkerOptions()
+                .position(marcador2)
+                .title("PlazaVea Hiper Zárate")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.market)));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(marcador2));*/
+
+
         mMap.addMarker(new MarkerOptions().position(metroAgustino).title("Metro"));
         mMap.moveCamera(CameraUpdateFactory.newCameraPosition(
                 new CameraPosition.Builder()
@@ -79,15 +93,32 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                         .zoom(17f)
                         .build()
         ));
+
+        // Centrar Marcadores
+        /*LatLngBounds.Builder constructor = new LatLngBounds.Builder();
+
+        constructor.include(marcador1);
+        constructor.include(marcador2);
+
+        LatLngBounds limites = constructor.build();
+
+        int ancho = getResources().getDisplayMetrics().widthPixels;
+        int alto = getResources().getDisplayMetrics().heightPixels;
+        int padding = (int) (alto * 0.25); // 25% de espacio (padding) superior e inferior
+
+        CameraUpdate centrarmarcadores = CameraUpdateFactory.newLatLngBounds(limites, ancho, alto, padding);
+
+        mMap.animateCamera(centrarmarcadores);
+*/
     }
 
 
-    public void Antutu(GoogleMap googleMap){
+    /*public void Antutu(GoogleMap googleMap){
         mMap = googleMap;
         final LatLng punto1 = new LatLng(-12.039450, -77.002902);
 
         mMap.addMarker(new MarkerOptions().position(punto1).title("Metro Agustino"));
-    }
+    }*/
 
 
 }

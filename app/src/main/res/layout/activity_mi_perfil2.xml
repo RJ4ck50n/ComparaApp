@@ -41,21 +41,17 @@
             android:id="@+id/emailTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
+            android:textSize="14sp"
+            android:gravity="center"
             android:text="emial " />
 
         <TextView
             android:id="@+id/providerTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
+            android:gravity="center"
+            android:textSize="14sp"
             android:text="Proovedor" />
-
-        <TextView
-            android:id="@+id/idTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
 
         <Button
             android:id="@+id/btn_MiActividad"

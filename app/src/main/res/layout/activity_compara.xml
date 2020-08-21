@@ -89,9 +89,9 @@
     <ImageView
         android:layout_width="100dp"
         android:layout_height="90dp"
-        android:src="@drawable/azucarrubiametro5kg"
         android:translationY="270dp"
         android:translationX="5dp"
+        android:id="@+id/imageAzucar"
         tools:ignore="MissingConstraints" />
     <ImageView
         android:layout_width="100dp"
@@ -101,6 +101,7 @@
         android:translationX="5sp"
         tools:ignore="MissingConstraints" />
     <ImageView
+        android:id="@+id/imgLeche"
         android:layout_width="100dp"
         android:layout_height="90dp"
         android:src="@drawable/lecheevaporadaglorialata400gr6un"
@@ -149,10 +150,16 @@
     <Button
         android:id="@+id/btn_irComparacion"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/button_round_border"
+        android:gravity="center"
         android:translationY="620dp"
-        android:text="Elegir Supermercados"
-        tools:ignore="MissingConstraints" />
+        android:text="Comparar"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold" />
+    />
 
 
 </RelativeLayout>

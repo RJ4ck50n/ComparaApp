@@ -2,12 +2,10 @@ package com.example.comparaapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
@@ -15,7 +13,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -41,7 +38,6 @@ public class ComparaActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_compara);
-
         mrootReference=FirebaseDatabase.getInstance().getReference();
         spinnerArroz=findViewById(R.id.spinnerPrueba);
         spinnerAzucar=findViewById(R.id.spinnerAzucar);
@@ -53,6 +49,8 @@ public class ComparaActivity extends AppCompatActivity {
         listaprodAceite=new ArrayList();
         listaprodLeche=new ArrayList();
         btnComparacion=(Button)findViewById(R.id.btn_irComparacion);
+        final Bundle miBundle=this.getIntent().getExtras();
+
 
         mrootReference.child("Arroz").addValueEventListener(new ValueEventListener() {
             @Override
@@ -76,7 +74,6 @@ public class ComparaActivity extends AppCompatActivity {
 
             }
         });
-
         spinnerArroz.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -92,17 +89,17 @@ public class ComparaActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {}
         });
 
-        mrootReference.child("Azucar").addValueEventListener(new ValueEventListener() {
+        mrootReference.child("tipoAzucar").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 listaprodAzucar.clear();
                 listaprodAzucar.add("Seleccione un Producto");
                 for(DataSnapshot snapshot:dataSnapshot.getChildren()){
                     Producto unprod=snapshot.getValue(Producto.class);
-                    String marca=unprod.getMarca();
+                    String prod=unprod.getProducto();
                     String mtipo=unprod.getTipo();
                     String peso=unprod.getPeso();
-                    String conjunto= mtipo + " "+ marca+ " "+peso;
+                    String conjunto= prod + " "+ mtipo+ " "+peso;
                     listaprodAzucar.add(conjunto);
                 }
                 ArrayAdapter<String> arrayAdapter= new ArrayAdapter<>(ComparaActivity.this,android.R.layout.simple_dropdown_item_1line,listaprodAzucar);
@@ -114,6 +111,43 @@ public class ComparaActivity extends AppCompatActivity {
 
             }
         });
+        spinnerAzucar.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                itemselected=parent.getItemAtPosition(position).toString();
+                ImageView imgView = (ImageView)findViewById(R.id.imageAzucar);
+                if(itemselected.equals("Azucar Rubia 1 KG")){imgView.setImageDrawable(ContextCompat.getDrawable(ComparaActivity.this,R.drawable.azucarrubiametro1kg));
+                }if(itemselected.equals("Azucar Rubia 2 KG")){imgView.setImageDrawable(ContextCompat.getDrawable(ComparaActivity.this,R.drawable.azucarrubiametro2kg));
+                }else if(itemselected.equals("Azucar Rubia 5 KG")){imgView.setImageDrawable(ContextCompat.getDrawable(ComparaActivity.this,R.drawable.azucarrubiametro5kg));
+                }else if(itemselected.equals("Azucar Blanca 1 KG")){imgView.setImageDrawable(ContextCompat.getDrawable(ComparaActivity.this,R.drawable.azucarblancawong1kg));}
+                else if(itemselected.equals("Azucar Blanca 2 KG")){imgView.setImageDrawable(ContextCompat.getDrawable(ComparaActivity.this,R.drawable.azucarblancawong2kg));}
+                else if(itemselected.equals("Azucar Blanca 5 KG")){imgView.setImageDrawable(ContextCompat.getDrawable(ComparaActivity.this,R.drawable.azucarblancawong5kg));}
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {}
+        });
+
+        mrootReference.child("Aceite").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                listaprodAceite.clear();
+                listaprodAceite.add("Seleccione un Producto");
+                for(DataSnapshot snapshot:dataSnapshot.getChildren()){
+                    Producto unprod=snapshot.getValue(Producto.class);
+                    String marca=unprod.getMarca();
+                    String mtipo=unprod.getTipo();
+                    String peso=unprod.getPeso();
+                    String conjunto= mtipo + " "+ marca+ " "+peso;
+                    listaprodAceite.add(conjunto);
+                }
+                ArrayAdapter<String> arrayAdapter= new ArrayAdapter<>(ComparaActivity.this,android.R.layout.simple_dropdown_item_1line,listaprodAceite);
+                spinnerAceite.setAdapter(arrayAdapter);}
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {}
+        });
+
         mrootReference.child("Leche").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -122,9 +156,10 @@ public class ComparaActivity extends AppCompatActivity {
                 for(DataSnapshot snapshot:dataSnapshot.getChildren()){
                     Producto unprod=snapshot.getValue(Producto.class);
                     String marca=unprod.getMarca();
-                    String mtipo=unprod.getTipo();
+                    String por=unprod.getProducto();
                     String peso=unprod.getPeso();
-                    String conjunto= mtipo + " "+ marca+ " "+peso;
+                    Integer unida=unprod.getUnidades();
+                    String conjunto= por + " "+ marca+ " "+peso+" "+unida+" unidades";
                     listaprodLeche.add(conjunto);
                 }
                 ArrayAdapter<String> arrayAdapter= new ArrayAdapter<>(ComparaActivity.this,android.R.layout.simple_dropdown_item_1line,listaprodLeche);
@@ -133,46 +168,39 @@ public class ComparaActivity extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {}
         });
+        spinnerLeche.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                itemselected=parent.getItemAtPosition(position).toString();
+                ImageView imgView = (ImageView)findViewById(R.id.imgLeche);
+                if(itemselected.equals("Leche GLORIA 400 gr 6 unidades")){imgView.setImageDrawable(ContextCompat.getDrawable(ComparaActivity.this,R.drawable.lecheevaporadaglorialata400gr6un));
+                }if(itemselected.equals("Leche GLORIA 170 gr 6 unidades")){imgView.setImageDrawable(ContextCompat.getDrawable(ComparaActivity.this,R.drawable.lecheevaporadaglorialata170gr6un));
+                }else if(itemselected.equals("Leche GLORIA 400 gr 1 unidades")){imgView.setImageDrawable(ContextCompat.getDrawable(ComparaActivity.this,R.drawable.lecheevaporadaglorialata400gr));}
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {}
+        });
 
         btnComparacion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent inte=new Intent(v.getContext(), Comparacionproductos.class);
-                CheckBox checkMetro2= (CheckBox) findViewById(R.id.checkboxMetro);
+                String super1=miBundle.getString("super1");
+                String super2= miBundle.getString("super2");
                 String valor = spinnerArroz.getSelectedItem().toString();
+                String valor1 = spinnerAzucar.getSelectedItem().toString();
+                String valor2 = spinnerAceite.getSelectedItem().toString();
+                String valor3 = spinnerLeche.getSelectedItem().toString();
+                inte.putExtra("super1",super1);
+                inte.putExtra("super2",super2);
                 inte.putExtra("arroz",valor);
+                inte.putExtra("azucar",valor1);
+                inte.putExtra("aceite",valor2);
+                inte.putExtra("leche",valor3);
                 startActivityForResult(inte,0);
             }
 
-        });
-
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-
-        // Establecer activity por defecto->Compara
-        bottomNavigationView.setSelectedItemId(R.id.Compara);
-
-        //Realizar el llamado del Item seleccionado
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
-                    case R.id.Compara:
-                        return true;
-
-                    case R.id.Inicio:
-                        startActivity(new Intent(getApplicationContext()
-                                ,MainActivity.class));
-                        overridePendingTransition(0,0);
-                        return true;
-
-                    case R.id.MiPerfil:
-                        startActivity(new Intent(getApplicationContext()
-                                ,MiPerfil2.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                }
-                return false;
-            }
         });
 
     }
